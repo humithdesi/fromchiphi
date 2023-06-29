@@ -1,0 +1,64 @@
+<p>inputtest works!</p>
+<select [(ngModel)]="printBat">
+    <option *ngFor="let c of banghieus ;let i=index"  [value]="c.value">{{c.name}}{{i}}</option>
+</select>
+
+<div>Selected Option is : {{ radioValueChanDung}}</div>
+<mat-radio-group  name="radioValueChanDung" (change)="changeValueOfChanDung($event)" >
+    <mat-radio-button *ngFor="let c of radioChandungs; let i=index" color="primary" [checked]="i === 0" [value]="c.valueChanDung"><a style="color: black;" >{{c.chanDung}}{{i}}</a></mat-radio-button>
+
+</mat-radio-group>
+<div>Selected Option is : {{ radioValueMatBang}}</div>
+<mat-radio-group  name="radioValueMatBang" (change)="changeValueOfMatBang($event)" >
+    <mat-radio-button *ngFor="let c of radioMatBangs; let i=index" color="primary" [checked]="i === 0" [value]="c.valueMat"><a style="color: black;" >{{c.soMat}}{{i}}</a></mat-radio-button>
+</mat-radio-group>
+
+<button  (click)="formsHide=!formsHide"> Ước Tinh Chi Phí </button>
+<section>
+  <div class="example-label">Raised</div>
+  <div class="example-button-row">
+    <button mat-raised-button style="margin: 5px;">Basic</button>
+    <button mat-raised-button >Primary</button>
+  </div>
+</section>
+
+<select [(ngModel)]="printBat">
+    <option *ngFor="let c of prints" [value]="c.giatien">{{c.danhmuc}}</option>
+</select>
+<label>height</label>
+<input name="height" type="number" [(ngModel)]="height">{{donviName}}
+<label>width</label>
+<input name="width" type="number" [(ngModel)]="width">{{donviName}}
+<label>quality</label>
+<input name="quality" type="number" [(ngModel)]="quality">
+<input name="num4" type="number" [(ngModel)]="radioValueChanDung+height*selectedValue*width*selectedValue*printBat*quality*radioValueMatBang">
+
+<div *ngIf="formsHide"  class="formHideShow" (click)="formsHide=!formsHide" >
+</div>    
+<form  class="formUocTinhChiPhi">
+    <a href="#" class="btn-close"></a>
+    <h1>ƯỚC TÍNH CHI PHÍ</h1>
+    <div style="text-align: center;">
+        <button mat-raised-button style="margin: 5px; " [color]=" formChange ? 'primary' : 'accent'" (click)="formChange=!formChange">IN ẤN</button>
+        <button mat-raised-button style="margin: 5px; " [color]=" formChange ? 'accent' : 'primary'" (click)="formChange=!formChange">LÀM BẢNG HIỆU</button>
+        
+    </div>
+<app-chiphiinbat *ngIf="formChange"></app-chiphiinbat>
+<app-chiphibanghieu  *ngIf="!formChange"></app-chiphibanghieu>
+
+
+<p style="text-align: center; font-size:medium">Chi phí chỉ mang tính chất tham khảo, để biết thêm thông tin và các dịch vụ ưu đãi vui lòng liên hệ với chúng tôi</p>
+<h1 style="text-align:center; background-color:red; border-radius:99px; color:white; padding:10px">HOTLINE: 0703.124.241</h1>
+
+<div class="lottie-animation mt-10">
+    <ng-lottie *ngIf="formChange"
+      [options]="options" 
+     >
+    </ng-lottie>
+    <ng-lottie *ngIf="!formChange"
+      [options]="stepTwoOptions" 
+     >
+    </ng-lottie>
+  </div>
+</form>
+
